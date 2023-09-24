@@ -1,0 +1,44 @@
+<h1>Expenses Calculator APP </h1>
+<div class="container">
+<%= simple_form_for Idea.new do |f| %>
+    <%= f.input :title %>
+    <%= f.input :amount %>
+    <%= f.input :date %>
+    <%= f.submit 'Submit' %>
+  <% end %>
+  </div>
+
+
+<% @ideas.each do |idea| %>
+    <div class="card">
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <p><%= idea.title %></p>
+          <p><%= idea.amount %></p>
+          <p><%= idea.date %></p>
+        </blockquote>
+        <br>
+        <%= link_to 'Delete', idea_path(idea), class: 'btn btn-sm btn-danger', data: {"turbo-confirm": "Are you sure?" ,"turbo-method" => :delete} %>
+        <%= link_to 'Edit', edit_idea_path(idea), class: 'btn btn-sm btn-success' %>
+      </div>
+    </div>
+    <% end %>
+
+
+
+
+
+<div class="container mx-auto p-4 ">
+  <div class="card" style="width: 18rem;">
+    <h5>Your Final Record </h5>
+     <ul class="list-group list-group-flush">
+    <li class="list-group-item">Balance: <%=@positive_expense %>   </li>
+    <li class="list-group-item">Debt: <%=@negative_expense %> </li>
+    <li class="list-group-item">Total: <%=@total %></li>
+     </ul>
+  </div>
+   
+</div>
+
+
+
